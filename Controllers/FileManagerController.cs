@@ -36,8 +36,7 @@ namespace EJ2APIServices.Controllers
         [Route("FileOperations")]
         public object FileOperations([FromBody] FileManagerDirectoryContent args)
         {
-            // beforeSend Event
-            var header = HttpContext.Request.Headers["Authorization"];
+            var header = HttpContext.Request.Headers["Authorization"];   // beforeSend Event
             this.root = (header == "User1") ? "wwwroot\\Files" : "wwwroot\\FileBrowser";
             this.operation.RootFolder(this.basePath + "\\" + this.root);
 
@@ -86,7 +85,7 @@ namespace EJ2APIServices.Controllers
         [DisableRequestSizeLimit]
         public IActionResult Upload(string path, long size, IList<IFormFile> uploadFiles, string action)
         {
-            var header = HttpContext.Request.Headers["Authorization"]; // before Event
+            var header = HttpContext.Request.Headers["Authorization"]; // beforeSend Event
             try
             {
                 FileManagerResponse uploadResponse;
@@ -139,8 +138,7 @@ namespace EJ2APIServices.Controllers
         [Route("Download")]
         public IActionResult Download(string downloadInput)
         {
-            // beforeDownload
-            var header = Request.Headers["Authorization"].ToString();
+            var header = Request.Headers["Authorization"].ToString();  // beforeDownload event
             Response.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
 
             var options = new JsonSerializerOptions
@@ -155,6 +153,7 @@ namespace EJ2APIServices.Controllers
         [Route("GetImage")]
         public IActionResult GetImage(FileManagerDirectoryContent1 args)
         {
+            var header = args.Authorization;    // beforeImageLoad event
             return this.operation.GetImage(args.Path, args.Id,false,null, null);
         }       
     }
