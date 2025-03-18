@@ -1,0 +1,37 @@
+﻿@page
+
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="control-section">
+    <div class="sample-container" style="padding:10px">        
+        <!--  Filemanager control declaration -->
+        <ejs-filemanager id="file" beforeSend="onBeforeSend" beforeDownload="onBeforeDownload" beforeImageLoad="onBeforeImageLoad">
+            <e-filemanager-ajaxsettings getImageUrl="http://localhost:{port}/api/FileManager/GetImage"
+                                        url="http://localhost:{port}/api/FileManager/FileOperations"
+                                        downloadUrl="http://localhost:{port}/api/FileManager/Download"
+                                        uploadUrl="http://localhost:{port}/api/FileManager/Upload">
+            </e-filemanager-ajaxsettings>
+        </ejs-filemanager>
+    </div>
+</div>
+<script>
+    function onBeforeSend(args) {
+        args.ajaxSettings.beforeSend = function (args) {
+            args.httpRequest.setRequestHeader('Authorization', 'User1');
+        };
+    }
+    function onBeforeDownload(args) {
+        args.useFormPost = false;
+        if (args.ajaxSettings) {
+            args.ajaxSettings.beforeSend = function (args) {
+                args.fetchRequest.headers.append('Authorization', 'User1');
+            };
+        }
+    }
+    function onBeforeImageLoad(args) {
+        // Add custom parameter in image URL
+        args.imageUrl = args.imageUrl + "&Authorization=" + "User1";
+    }
+</script>
