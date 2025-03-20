@@ -8,10 +8,10 @@
 
 4. Open the React sample application.
 
-5. To install File Manager component, use the following command
+5. To install packages, use the following command
 
     ```ts
-    npm install @syncfusion/ej2-react-filemanager --save
+    npm install
     ```
 
 6. Just mapping host number in the place of {port} in the ajaxSettings property of the File Manager component.

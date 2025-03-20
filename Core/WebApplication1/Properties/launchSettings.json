@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "WebApplication1": {
+    "FileManagerApplication": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

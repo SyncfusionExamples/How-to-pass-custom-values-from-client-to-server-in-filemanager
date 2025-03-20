@@ -2,23 +2,20 @@
     ViewBag.Title = "Home Page";
 }
 
-<style>
-    .control-wrapper {
-        margin: 0 auto;
-        width: 600px;
-    }
-</style>
 
 <div class="control-section">
     <div class="sample-container">
-        <!--  Filemanager control declaration -->
+        <!--  File Manager control declaration -->
         @Html.EJS().FileManager("file").AjaxSettings(new Syncfusion.EJ2.FileManager.FileManagerAjaxSettings
-   {
-       Url = "http://localhost:{port}/api/FileManager/FileOperations",
-       GetImageUrl = "http://localhost:{port}/api/FileManager/GetImage",
-       UploadUrl = "http://localhost:{port}/api/FileManager/Upload",
-       DownloadUrl = "http://localhost:{port}/api/FileManager/Download"
-   }).BeforeSend("onBeforeSend").BeforeDownload("onBeforeDownload").BeforeImageLoad("onBeforeImageLoad").Render()
+            {
+                Url = "http://localhost:{port}/api/FileManager/FileOperations",
+                GetImageUrl = "http://localhost:{port}/api/FileManager/GetImage",
+                UploadUrl = "http://localhost:{port}/api/FileManager/Upload",
+                DownloadUrl = "http://localhost:{port}/api/FileManager/Download"
+            })
+            .BeforeSend("onBeforeSend")
+            .BeforeDownload("onBeforeDownload")
+            .BeforeImageLoad("onBeforeImageLoad").Render()
         <!-- end of File Manager control -->
     </div>    
 </div>

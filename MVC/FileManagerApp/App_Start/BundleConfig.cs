@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace WebApplication
+namespace FileManagerApp
 {
     public class BundleConfig
     {
