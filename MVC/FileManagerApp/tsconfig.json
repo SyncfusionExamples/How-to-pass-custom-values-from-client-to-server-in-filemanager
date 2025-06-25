@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [ "es2015", "dom" ],
+    "allowJs": true,
+    "outDir": "./Scripts/compiled",
+    "rootDir": "./Scripts"
+  },
+  "include": [
+    "Scripts/**/*.ts"
+  ]
+}
+
