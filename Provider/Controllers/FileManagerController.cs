@@ -132,19 +132,13 @@ namespace EJ2APIServices.Controllers
             return operation.Download(args.Path, args.Names, args.Data);
         }
 
-        // beforeImageLoad
-        public class FileManagerDirectoryContent1 : FileManagerDirectoryContent
-        {
-            public string Authorization { get; set; }
-        }
-
         // gets the image(s) from the given path
         [Route("GetImage")]
-        public IActionResult GetImage(FileManagerDirectoryContent1 args)
+        public object GetImage([FromBody] FileManagerDirectoryContent args)
         {
-            var header = args.Authorization;
-            return this.operation.GetImage(args.Path, args.Id,false,null, null);
-        }       
+            var header = HttpContext.Request.Headers["Authorization"];
+            return this.operation.GetImage(args.Path, args.Id, false, null, null);
+        }     
     }
 
 }

@@ -27,8 +27,14 @@ var filemanagerInstance = new ej.filemanager.FileManager({
         } 
     },
     beforeImageLoad: function (args){
-        // Add custom parameter in image URL
-        args.imageUrl = args.imageUrl + "&Authorization=" + "User1";
+        args.useImageAsUrl = false;
+        // Check if ajaxSettings are present in the arguments
+        if (args.ajaxSettings) {
+            (args.ajaxSettings).beforeSend = function (args) {
+                // Append Authorization header with value 'User1' to fetchRequest headers
+                args.fetchRequest.headers.append('Authorization', 'User1');
+            };
+        }
     }   
 });
 

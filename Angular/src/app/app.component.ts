@@ -40,8 +40,14 @@ export class AppComponent {
         }       
     }
     onBeforeImageLoad(args: BeforeImageLoadEventArgs): void {
-        // Add custom parameter in image URL
-        args.imageUrl = args.imageUrl + "&Authorization=" + "User1";
+        args.useImageAsUrl = false;
+         // Check if ajaxSettings are present in the arguments
+        if (args.ajaxSettings) {
+            (args.ajaxSettings as any).beforeSend = function (args: any) {
+                // Append Authorization header with value 'User1' to fetchRequest headers
+                args.fetchRequest.headers.append('Authorization', 'User1');
+            };
+        }
     }
 }
 

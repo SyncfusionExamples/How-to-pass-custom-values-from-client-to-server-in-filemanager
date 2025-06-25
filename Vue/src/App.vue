@@ -34,7 +34,14 @@ export default {
         }
       },
       onBeforeImageLoad: function (args) {
-        args.imageUrl = args.imageUrl + "&Authorization=" + "User1";
+        args.useImageAsUrl = false;
+        // Check if ajaxSettings are present in the arguments
+        if (args.ajaxSettings) {
+          (args.ajaxSettings).beforeSend = function (args) {
+            // Append Authorization header with value 'User1' to fetchRequest headers
+            args.fetchRequest.headers.append('Authorization', 'User1');
+          };
+        }
       },
       onBeforeDownload: function (args) {
         args.useFormPost = false;
